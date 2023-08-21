@@ -84,7 +84,7 @@ fun MainContent(
         LazyColumn {
             items(items = movieList) {
                 MovieRow(movie = it) { movie ->
-                    
+
                 }
             }
         }
@@ -99,7 +99,7 @@ fun MovieRow(movie: String, onItemClick: (String) -> Unit = {}) {
             .fillMaxWidth()
             .height(130.dp)
             .clickable {
-                       onItemClick(movie)
+                onItemClick(movie)
             },
         shape = RoundedCornerShape(corner = CornerSize(16.dp)),
         elevation = CardDefaults.cardElevation(6.dp)
