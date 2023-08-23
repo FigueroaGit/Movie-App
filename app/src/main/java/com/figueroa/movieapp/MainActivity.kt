@@ -36,6 +36,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.figueroa.movieapp.navigation.MovieNavigation
 import com.figueroa.movieapp.ui.theme.MovieAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -43,7 +44,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyApp {
-                MainContent()
+                MovieNavigation()
             }
         }
     }
@@ -53,41 +54,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MyApp(content: @Composable () -> Unit) {
     MovieAppTheme {
-        Scaffold(
-            topBar = {
-                TopAppBar(
-                    title = { Text(text = "Movies") },
-                    colors = TopAppBarDefaults.smallTopAppBarColors()
-                )
-            }
-        ) {
-            it.calculateBottomPadding()
-            content()
-        }
-    }
-}
-
-@Composable
-fun MainContent(
-    movieList: List<String> = listOf(
-        "Avatar",
-        "300",
-        "Harry Potter",
-        "Hapiness",
-        "Cross the line",
-        "Be Happy",
-        "Happy Feet",
-        "Life"
-    )
-) {
-    Column(modifier = Modifier.padding(12.dp)) {
-        LazyColumn {
-            items(items = movieList) {
-                MovieRow(movie = it) { movie ->
-                    
-                }
-            }
-        }
+        content()
     }
 }
 
@@ -99,7 +66,7 @@ fun MovieRow(movie: String, onItemClick: (String) -> Unit = {}) {
             .fillMaxWidth()
             .height(130.dp)
             .clickable {
-                       onItemClick(movie)
+                onItemClick(movie)
             },
         shape = RoundedCornerShape(corner = CornerSize(16.dp)),
         elevation = CardDefaults.cardElevation(6.dp)
@@ -127,6 +94,6 @@ fun MovieRow(movie: String, onItemClick: (String) -> Unit = {}) {
 @Composable
 fun DefaultPreview() {
     MyApp {
-        MainContent()
+        MovieNavigation()
     }
 }
