@@ -25,7 +25,7 @@ fun HomeScreen(navController: NavController) {
         topBar = {
             TopAppBar(
                 title = { Text(text = "Movies") },
-                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color.Blue)
+                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color.Transparent)
             )
         },
     ) { contentPadding ->
@@ -53,7 +53,8 @@ fun MainContent(
         LazyColumn {
             items(items = movieList) {
                 MovieRow(movie = it) { movie ->
-                    navController.navigate(route = MovieScreens.DetailScreen.name)
+                    navController.navigate(route = MovieScreens.DetailScreen.name+"/$movie")
+
                 }
             }
         }
